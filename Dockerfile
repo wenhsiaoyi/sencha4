@@ -1,4 +1,4 @@
-FROM wenhsiaoyi/ubuntu:xenial
+FROM wenhsiaoyi/ubuntu-xenial
 MAINTAINER Jack Wen <http://github.com/wenhsiaoyi>
 
 
