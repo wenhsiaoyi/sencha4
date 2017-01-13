@@ -1,21 +1,9 @@
-FROM ubuntu:xenial
+FROM wenhsiaoyi/ubuntu-base:jre8
 MAINTAINER Jack Wen <http://github.com/wenhsiaoyi>
 
-# Common environment variables
-ENV DEBIAN_FRONTEND noninteractive
 
-RUN \
-
-# Install dependencies
-    apt-get update && apt-get install -y --no-install-recommends \
-        openjdk-7-jre \
-        unzip \
-        wget \
-        ruby && \
-
-# Remove cache
-    apt-get clean && rm -rf /var/lib/apt/lists/*
-
+ENV LANG en_US.UTF-8
+RUN locale-gen $LANG
 ENV PATH ${PATH}:/opt/Sencha/Cmd/4.0.5.87
 
 RUN \
@@ -27,7 +15,9 @@ RUN \
     /opt/Sencha/Cmd/SenchaCmd-4.0.5.87-linux-x64.run --prefix /opt --mode unattended  && \
     rm /opt/Sencha/Cmd/SenchaCmd-4.0.5.87-linux-x64.run
 
-VOLUME ["/var/www"]
+EXPOSE 1841
+
+VOLUME ["/var/www", "/opt/projects"]
 WORKDIR /var/www
 
 CMD ["bash"]
